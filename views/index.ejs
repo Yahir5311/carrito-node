@@ -1,0 +1,19 @@
+<% layout('layout') %>
+
+<h2>Productos</h2>
+<div class="products-grid">
+  <% products.forEach(p => { %>
+    <div class="product-card">
+      <img src="<%= p.imagen_url %>" alt="<%= p.nombre %>">
+      <h3><%= p.nombre %></h3>
+      <p class="price">$<%= Number(p.precio).toFixed(2) %></p>
+      <p class="desc"><%= p.descripcion %></p>
+
+      <form action="/cart/add/<%= p.id %>" method="POST" class="add-cart-form">
+        <label>Cantidad:</label>
+        <input type="number" name="quantity" value="1" min="1">
+        <button type="submit">Agregar al carrito</button>
+      </form>
+    </div>
+  <% }) %>
+</div>

@@ -1,0 +1,13 @@
+<nav class="navbar">
+  <a href="/">Productos</a>
+  <a href="/cart">Carrito (<%= cart.totalQty || 0 %>)</a>
+
+  <% if (currentUser) { %>
+    <a href="/orders/history">Historial</a>
+    <span class="navbar-user">Hola, <%= currentUser.nombre %></span>
+    <a href="/logout">Cerrar sesión</a>
+  <% } else { %>
+    <a href="/login">Iniciar sesión</a>
+    <a href="/register">Registrarse</a>
+  <% } %>
+</nav>

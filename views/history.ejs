@@ -1,0 +1,31 @@
+<% layout('layout') %>
+
+<h2>Historial de compras</h2>
+
+<% if (orders.length === 0) { %>
+  <p>No tienes compras registradas.</p>
+<% } else { %>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Número de orden</th>
+        <th>Total</th>
+        <th>Fecha</th>
+        <th>Ticket</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% orders.forEach(o => { %>
+        <tr>
+          <td><%= o.id %></td>
+          <td>$<%= Number(o.total).toFixed(2) %></td>
+          <td><%= o.created_at %></td>
+          <td>
+            <a href="/orders/<%= o.id %>/ticket">Ver</a> |
+            <a href="/orders/<%= o.id %>/ticket/pdf">PDF</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>

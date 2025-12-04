@@ -1,0 +1,27 @@
+<% layout('layout') %>
+
+<h2>Ticket de compra</h2>
+
+<div class="ticket">
+  <p><strong>Cliente:</strong> <%= user.nombre %> (<%= user.email %>)</p>
+  <p><strong>Fecha:</strong> <%= order.created_at %></p>
+  <p><strong>Número de orden:</strong> <%= order.id %></p>
+  <p><strong>Total:</strong> $<%= Number(order.total).toFixed(2) %></p>
+
+  <h3>Productos</h3>
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <strong><%= item.nombre %></strong> - 
+        Cant: <%= item.quantity %> x $<%= Number(item.price).toFixed(2) %> =
+        $<%= (item.quantity * Number(item.price)).toFixed(2) %>
+      </li>
+    <% }) %>
+  </ul>
+
+  <p>
+    <a href="/orders/<%= order.id %>/ticket/pdf" class="btn-primary">
+      Descargar PDF
+    </a>
+  </p>
+</div>
